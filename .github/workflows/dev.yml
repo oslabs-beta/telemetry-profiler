@@ -23,10 +23,6 @@ jobs:
       - name: Install
         run: npm install
 
-      # Build package
-      - name: Build
-        run: npm run build
-
       - name: NPM Publish to github package repo
         uses: JS-DevTools/npm-publish@v1
         with:
