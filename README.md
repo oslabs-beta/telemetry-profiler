@@ -1,6 +1,6 @@
 <h3 align='center' >Telemetry Profiler</h3>
 
-<h3 align='center'> Telemetry Profiler is an open-source library built on Next.js which enables developers to acquire real time performance measurements. </h3>
+<h3 align='center'> Telemetry Profiler is an open-source library that enables developers to acquire real time performance measurements for rapid testing and analytics. </h3>
 
 
 ### Install via npm
