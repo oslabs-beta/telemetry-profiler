@@ -1,4 +1,1 @@
-export default function main () {
-  return 0;
-}
-
+export * from './Profiler'
