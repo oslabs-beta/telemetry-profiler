@@ -1,6 +1,6 @@
-const axios = require('axios')
+import axios from 'axios';
 
-class Telemetry {
+export class Telemetry {
   constructor(httpOptions) {
     this.options = { url: httpOptions.url }
     this.axios = axios.create(httpOptions)
@@ -15,7 +15,6 @@ class Telemetry {
   }
 }
 
-module.exports = { Telemetry }
 
 
 

@@ -1,7 +1,7 @@
-const { Telemetry } = require('./Telemetry');
-const { PerformanceObserver, performance } = require('perf_hooks');
+import { Telemetry } from './Telemetry.mjs';
+import { PerformanceObserver, performance } from 'perf_hooks';
 
-class Profiler {
+export class Profiler {
   profile = {
     performance: [],
     eventUtilization: null,
@@ -76,7 +76,7 @@ class Profiler {
       // if (options.emit) { // erroring out for some reason || RECHECK LOGIC
       //   this.emit = true;
       // }
-      if (true) { // conditional to check for env var
+      if (process.env.TELEMETRY) { // conditional to check for env var
         return (...args) => {
           this.obs.observe({ type: 'measure' });
           performance.mark('A', { detail: func.name });
@@ -133,5 +133,3 @@ async emit() {
   console.log(this.profile)
 }
 }
-
-module.exports = { Profiler }
