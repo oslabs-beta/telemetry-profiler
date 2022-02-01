@@ -37,6 +37,7 @@ export class Profiler {
     */
       this.options = options;
       this.obs = new PerformanceObserver((items) => {
+        console.log(this.profile);
         console.log(items)
         const entries = items.getEntries()
         // if options.bundle = true, then change behavior
@@ -44,7 +45,10 @@ export class Profiler {
         // else, axios call using Telemetry module
         performance.clearMarks();
         if (this.batch) {
-          if (this.emit) this.telemetry.send(this.profile);
+          if (this.emit) {
+            this.telemetry.send(this.profile);
+            this.emit = false;
+          }
         } else {
           this.profile.performance = items;
           this.telemetry.send(this.profile); // maybe wrapper object for consistency to send the same type every time
@@ -73,10 +77,10 @@ export class Profiler {
       4. Optional Performance.toJSON (might be better in constructor)
       */
       //  toJSon() {
-      // if (options.emit) { // erroring out for some reason || RECHECK LOGIC
-      //   this.emit = true;
-      // }
       if (!options) options = {};
+      if (options.emit) { // erroring out for some reason || RECHECK LOGIC
+        this.emit = true;
+      }
       if (process.env.TELEMETRY) { // conditional to check for env var
         return (...args) => {
           this.obs.observe({ type: 'measure' });
