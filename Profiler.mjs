@@ -27,7 +27,7 @@ export class Profiler {
   */
 
   constructor(options /* ProfilerOptions */) {
-    const { EventLoopData, batch, ...httpOptions } = options;
+    const { eventLoopData, batch, ...httpOptions } = options;
     /*
     AS DEFAULT OPTIONS
     1. Add optional event loop data
