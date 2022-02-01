@@ -1,4 +1,4 @@
-const { Profiler } = require('../Profiler')
+import { Profiler } from '../Profiler.mjs'
 
 describe('test profiler', () => {
 

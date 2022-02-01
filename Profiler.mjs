@@ -37,9 +37,7 @@ export class Profiler {
     */
       this.options = options;
       this.obs = new PerformanceObserver((items) => {
-        console.log(this.profile);
-        console.log(items)
-        const entries = items.getEntries()
+        const entries = Array.from(items.getEntries());
         // if options.bundle = true, then change behavior
         this.profile.performance.push(...entries)
         // else, axios call using Telemetry module
@@ -138,3 +136,15 @@ async emit() {
   console.log(this.profile)
 }
 }
+
+const test = new Profiler({ eventloopData:false, batch: true, url: 'https://telemetry-profiler-demo.vercel.app/api/telemetry' })
+
+const loop = () => {
+    let count = 0
+    for (let i = 0; i < 10000000; i++) {
+        count+= 1;
+    }
+}
+
+test.measure(loop, { emit: true })();
+console.log("hi")
