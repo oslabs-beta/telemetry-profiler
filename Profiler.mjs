@@ -76,6 +76,7 @@ export class Profiler {
       // if (options.emit) { // erroring out for some reason || RECHECK LOGIC
       //   this.emit = true;
       // }
+      if (!options) options = {};
       if (process.env.TELEMETRY) { // conditional to check for env var
         return (...args) => {
           this.obs.observe({ type: 'measure' });
@@ -85,7 +86,7 @@ export class Profiler {
             return new Promise((resolve, reject) => {
               return func(...args).then((res) => {
                 console.log("is async")
-                if (this.options.eventLoopData || options.eventLoopData) {
+                if (this.options.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
                   this.profile.eventUtilization = performance.eventLoopUtilization(this.profile.eventUtilization);
                   console.log("profile.eventUtilization for async", this.profile.eventUtilization)
                 }
@@ -98,7 +99,7 @@ export class Profiler {
             })
           }
 
-          if (this.options.eventLoopData || options.eventLoopData) {
+          if (this.options.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
             this.profile.eventUtilization = performance.eventLoopUtilization(this.profile.eventUtilization)
             console.log("profile.eventUtilization for non async", this.profile.eventUtilization)
           }
