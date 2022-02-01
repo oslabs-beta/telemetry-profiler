@@ -2,6 +2,7 @@ const axios = require('axios')
 
 class Telemetry {
   constructor(httpOptions) {
+    this.options = { url: httpOptions.url }
     this.axios = axios.create(httpOptions)
   }
 

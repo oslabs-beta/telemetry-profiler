@@ -27,6 +27,7 @@ class Profiler {
   */
 
   constructor(options /* ProfilerOptions */) {
+    const { EventLoopData, batch, ...httpOptions } = options;
     /*
     AS DEFAULT OPTIONS
     1. Add optional event loop data
@@ -50,7 +51,7 @@ class Profiler {
         }
       });
       this.telemetry = new Telemetry({
-        ...options
+        ...httpOptions
       })
     
   }
@@ -134,5 +135,3 @@ async emit() {
 }
 
 module.exports = { Profiler }
-
-
