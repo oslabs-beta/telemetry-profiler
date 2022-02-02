@@ -49,7 +49,38 @@ profiler.measure(myCoolFunction3, { emit: true })(/* someOtherFunctionArguments 
 ```
 
 Asynchronous and synchronous functions are wrapped in the same manner and do not need to be differentiated in any way.
-    
+
+Your response should look something like this:
+
+```
+{
+  performance: [
+    {
+      name: 'Function execution terminated',
+      entryType: 'measure',
+      startTime: 10724.590511001647,
+      duration: 6.71425199508667,
+      detail: [Object]
+    },
+    {
+      name: 'Function execution terminated',
+      entryType: 'measure',
+      startTime: 10731.471342995763,
+      duration: 5.994003005325794,
+      detail: [Object]
+    },
+    {
+      name: 'Function execution terminated',
+      entryType: 'measure',
+      startTime: 10737.565986000001,
+      duration: 5.963962994515896,
+      detail: [Object]
+    }
+  ],
+  eventUtilization: null
+}
+```
+
 ### Testing input functions
 
 Basic testing with Jest is implemented. This feature is still being expanded upon.
