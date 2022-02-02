@@ -43,9 +43,9 @@ Note: If batching is set to true, you must pass a { emit: true } object along wi
 The below sample is 
 
 ```
-profiler.measure(myCoolFunction)(coolOptions);
-profiler.measure(myCoolFunction2)(otherCoolOptions);
-profiler.measure(myCoolFunction3, { emit: true })(someOtherOptions);
+profiler.measure(myCoolFunction)(/* functionArguments */);
+profiler.measure(myCoolFunction2)(/* otherfunctionArguments */);
+profiler.measure(myCoolFunction3, { emit: true })(/* someOtherFunctionArguments */);
 ```
 
 Asynchronous and synchronous functions are wrapped in the same manner and do not need to be differentiated in any way.
