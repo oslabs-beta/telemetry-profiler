@@ -39,6 +39,7 @@ export class Profiler {
       this.obs = new PerformanceObserver((items) => {
         const entries = Array.from(items.getEntries());
         // if options.bundle = true, then change behavior
+        console.log("this.profile.performance", this.profile.performance);
         this.profile.performance.push(...entries)
         // else, axios call using Telemetry module
         performance.clearMarks();
