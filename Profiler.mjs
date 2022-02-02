@@ -36,6 +36,8 @@ export class Profiler {
     4. Optional Performance.toJSON (might be better in constructor)
     */
       this.options = options;
+      this.batch = batch;
+      this.eventLoopData = eventLoopData;
       this.obs = new PerformanceObserver((items) => {
         const entries = Array.from(items.getEntries());
         // if options.bundle = true, then change behavior
@@ -89,7 +91,7 @@ export class Profiler {
             return new Promise((resolve, reject) => {
               return func(...args).then((res) => {
                 console.log("is async")
-                if (this.options.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
+                if (this.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
                   this.profile.eventUtilization = performance.eventLoopUtilization(this.profile.eventUtilization);
                   console.log("profile.eventUtilization for async", this.profile.eventUtilization)
                 }
@@ -102,7 +104,7 @@ export class Profiler {
             })
           }
 
-          if (this.options.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
+          if (this.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
             this.profile.eventUtilization = performance.eventLoopUtilization(this.profile.eventUtilization)
             console.log("profile.eventUtilization for non async", this.profile.eventUtilization)
           }
