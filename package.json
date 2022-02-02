@@ -1,6 +1,6 @@
 {
   "name": "@oslabs-beta/telemetry-profiler",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "",
   "type": "module",
   "main": "index.mjs",
