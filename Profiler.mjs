@@ -41,7 +41,6 @@ export class Profiler {
       this.obs = new PerformanceObserver((items) => {
         const entries = Array.from(items.getEntries());
         // if options.bundle = true, then change behavior
-        console.log("this.profile.performance", this.profile.performance);
         this.profile.performance.push(...entries)
         // else, axios call using Telemetry module
         performance.clearMarks();
@@ -90,10 +89,8 @@ export class Profiler {
           if (func.constructor.name === "AsyncFunction") {
             return new Promise((resolve, reject) => {
               return func(...args).then((res) => {
-                console.log("is async")
                 if (this.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
                   this.profile.eventUtilization = performance.eventLoopUtilization(this.profile.eventUtilization);
-                  console.log("profile.eventUtilization for async", this.profile.eventUtilization)
                 }
                 performance.measure('Function execution terminated', {
                   start: 'A',
@@ -106,7 +103,6 @@ export class Profiler {
 
           if (this.eventLoopData || options.eventLoopData) { // put back in || options.eventLoopData
             this.profile.eventUtilization = performance.eventLoopUtilization(this.profile.eventUtilization)
-            console.log("profile.eventUtilization for non async", this.profile.eventUtilization)
           }
       
           func(...args)
