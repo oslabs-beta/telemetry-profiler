@@ -5,11 +5,19 @@
 
 ### Install via npm
 
- `$npm install @oslabs-beta/telemetry-profiler@latest`
+ ```bash
+ $ npm install @oslabs-beta/telemetry-profiler@latest
+ ```
+ 
+ ### Install via yarn
+
+ ```bash
+ $ yarn add @oslabs-beta/telemetry-profiler@latest
+ ```
 
 ### Install via package.json:
 
- `"@oslabs-beta/telemetry-profiler": "1.0.8"`
+ `"@oslabs-beta/telemetry-profiler": "^1.0.15"`
 
 ### Features
 - Measurement of data via duration time
@@ -26,13 +34,13 @@ Telemetry Profiler is currently in beta and many features are still experimental
 
 To get started, simply import the Profiler module into your application.
 
-```
+```ts
 import { Profiler } from '@oslabs-beta/telemetry-profiler'
 ```
 
 Once imported, simply instantiate a new Profiler as shown below along with any of the relevant options:
 
-```
+```ts
 const profiler = new Profiler({ eventloopData: BOOLEAN, batch: BOOLEAN, url: '<YOUR URL HERE>' })
 ```
 
@@ -42,14 +50,45 @@ Note: If batching is set to true, you must pass a { emit: true } object along wi
 
 The below sample is 
 
-```
-profiler.measure(myCoolFunction)(coolOptions);
-profiler.measure(myCoolFunction2)(otherCoolOptions);
-profiler.measure(myCoolFunction3, { emit: true })(someOtherOptions);
+```ts
+profiler.measure(myCoolFunction)(/* functionArguments */);
+profiler.measure(myCoolFunction2)(/* otherfunctionArguments */);
+profiler.measure(myCoolFunction3, { emit: true })(/* someOtherFunctionArguments */);
 ```
 
 Asynchronous and synchronous functions are wrapped in the same manner and do not need to be differentiated in any way.
-    
+
+Your response should look something like this:
+
+```ts
+{
+  performance: [
+    {
+      name: 'Function execution terminated',
+      entryType: 'measure',
+      startTime: 10724.590511001647,
+      duration: 6.71425199508667,
+      detail: [Object]
+    },
+    {
+      name: 'Function execution terminated',
+      entryType: 'measure',
+      startTime: 10731.471342995763,
+      duration: 5.994003005325794,
+      detail: [Object]
+    },
+    {
+      name: 'Function execution terminated',
+      entryType: 'measure',
+      startTime: 10737.565986000001,
+      duration: 5.963962994515896,
+      detail: [Object]
+    }
+  ],
+  eventUtilization: null
+}
+```
+
 ### Testing input functions
 
 Basic testing with Jest is implemented. This feature is still being expanded upon.
