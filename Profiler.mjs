@@ -81,7 +81,7 @@ export class Profiler {
       if (options.emit) { // erroring out for some reason || RECHECK LOGIC
         this.emit = true;
       }
-      if (process.env.TELEMETRY) { // conditional to check for env var
+      if (true) { // conditional to check for env var
         return (...args) => {
           this.obs.observe({ type: 'measure' });
           performance.mark('A', { detail: func.name });
